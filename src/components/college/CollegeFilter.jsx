@@ -1,0 +1,112 @@
+import { Search, SlidersHorizontal, X } from 'lucide-react'
+import { BRANCHES, LOCATIONS, COLLEGE_TYPES } from '../../data/colleges'
+
+export default function CollegeFilter({ filters, onChange, resultCount, total }) {
+  const set = (key, val) => onChange({ ...filters, [key]: val })
+
+  const hasActiveFilter =
+    filters.query || filters.cetScore || filters.branch || filters.location || filters.type
+
+  const clearAll = () =>
+    onChange({ query: '', cetScore: '', branch: '', location: '', type: '' })
+
+  return (
+    <div className="bg-[#0C1520] border border-[rgba(0,210,255,0.12)] rounded-2xl p-5 flex flex-col gap-4">
+      {/* Top row */}
+      <div className="flex items-center justify-between flex-wrap gap-2">
+        <div className="flex items-center gap-2 text-sm text-[#7A9BB5]">
+          <SlidersHorizontal size={15} className="text-[#00D2FF]" />
+          <span>
+            Showing <span className="text-[#E8F4FF] font-semibold">{resultCount}</span> of{' '}
+            <span className="text-[#E8F4FF] font-semibold">{total}</span> colleges
+          </span>
+        </div>
+        {hasActiveFilter && (
+          <button
+            onClick={clearAll}
+            className="flex items-center gap-1 text-xs text-[#FF4FA3] hover:text-white transition-colors"
+          >
+            <X size={13} /> Clear filters
+          </button>
+        )}
+      </div>
+
+      {/* Filters row */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+        {/* Search */}
+        <div className="relative lg:col-span-2">
+          <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4A6480]" />
+          <input
+            value={filters.query}
+            onChange={(e) => set('query', e.target.value)}
+            placeholder="Search college name or city..."
+            className="w-full bg-[#080E16] border border-[#2A3F55] rounded-lg pl-9 pr-3 py-2.5 text-sm text-[#E8F4FF] placeholder-[#4A6480] outline-none focus:border-[rgba(0,210,255,0.4)] transition-colors"
+          />
+        </div>
+
+        {/* CET Score */}
+        <div className="relative">
+          <input
+            type="number"
+            min="0"
+            max="200"
+            value={filters.cetScore}
+            onChange={(e) => set('cetScore', e.target.value)}
+            placeholder="Your CET score"
+            className="w-full bg-[#080E16] border border-[#2A3F55] rounded-lg px-3 py-2.5 text-sm text-[#E8F4FF] placeholder-[#4A6480] outline-none focus:border-[rgba(0,210,255,0.4)] transition-colors"
+          />
+          {filters.cetScore && (
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-[#00D2FF] font-mono">
+              percentile
+            </span>
+          )}
+        </div>
+
+        {/* Branch */}
+        <select
+          value={filters.branch}
+          onChange={(e) => set('branch', e.target.value)}
+          className="bg-[#080E16] border border-[#2A3F55] rounded-lg px-3 py-2.5 text-sm text-[#E8F4FF] outline-none focus:border-[rgba(0,210,255,0.4)] transition-colors"
+        >
+          <option value="">All Branches</option>
+          {BRANCHES.map((b) => (
+            <option key={b} value={b}>
+              {b}
+            </option>
+          ))}
+        </select>
+
+        {/* Location */}
+        <select
+          value={filters.location}
+          onChange={(e) => set('location', e.target.value)}
+          className="bg-[#080E16] border border-[#2A3F55] rounded-lg px-3 py-2.5 text-sm text-[#E8F4FF] outline-none focus:border-[rgba(0,210,255,0.4)] transition-colors"
+        >
+          <option value="">All Cities</option>
+          {LOCATIONS.map((l) => (
+            <option key={l} value={l}>
+              {l}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Type pills */}
+      <div className="flex flex-wrap gap-2">
+        {['', ...COLLEGE_TYPES].map((t) => (
+          <button
+            key={t}
+            onClick={() => set('type', t)}
+            className={`px-3 py-1 rounded-full text-xs font-medium border transition-all ${
+              filters.type === t
+                ? 'bg-[#00D2FF] text-black border-[#00D2FF]'
+                : 'bg-transparent text-[#7A9BB5] border-[#2A3F55] hover:border-[#00D2FF] hover:text-[#00D2FF]'
+            }`}
+          >
+            {t === '' ? 'All Types' : t}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
