@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from '../components/ui/Button';
 
 const Home = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -14,14 +15,15 @@ const Home = () => {
             Stunet is the ultimate student management platform designed to streamline your academic life. Access resources, track progress, and connect with peers seamlessly.
           </p>
           <div className="hero-actions">
-            <button 
-              className={`primary-btn ${isHovered ? 'hovered' : ''}`}
+            <Button 
+              variant="primary"
+              className={isHovered ? 'hovered' : ''}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
               Get Started
-            </button>
-            <button className="secondary-btn">Learn More</button>
+            </Button>
+            <Button variant="secondary">Learn More</Button>
           </div>
         </div>
         <div className="hero-visual">
