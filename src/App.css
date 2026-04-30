@@ -18,10 +18,8 @@
   z-index: 100;
 }
 
-@media (prefers-color-scheme: dark) {
-  .navbar {
-    background: rgba(22, 23, 29, 0.8);
-  }
+:root.dark .navbar {
+  background: rgba(22, 23, 29, 0.8);
 }
 
 .logo-container {
@@ -174,10 +172,8 @@
   z-index: 10;
 }
 
-@media (prefers-color-scheme: dark) {
-  .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-  }
+:root.dark .glass-card {
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .mockup-header {
