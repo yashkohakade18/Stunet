@@ -1,121 +1,104 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="app-container">
+      <nav className="navbar">
+        <div className="logo-container">
+          <div className="logo-icon"></div>
+          <span className="logo-text">Stunet</span>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
+        <div className="nav-links">
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+        <button className="login-btn">Login / Sign Up</button>
+      </nav>
 
-      <div className="ticks"></div>
+      <main>
+        <section className="hero-section">
+          <div className="hero-content">
+            <h1 className="hero-title">
+              Empower Your <span className="highlight">Learning</span> Journey
+            </h1>
+            <p className="hero-subtitle">
+              Stunet is the ultimate student management platform designed to streamline your academic life. Access resources, track progress, and connect with peers seamlessly.
+            </p>
+            <div className="hero-actions">
+              <button 
+                className={`primary-btn ${isHovered ? 'hovered' : ''}`}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                Get Started
+              </button>
+              <button className="secondary-btn">Learn More</button>
+            </div>
+          </div>
+          <div className="hero-visual">
+            <div className="glass-card">
+              <div className="mockup-header">
+                <div className="dot red"></div>
+                <div className="dot yellow"></div>
+                <div className="dot green"></div>
+              </div>
+              <div className="mockup-body">
+                <div className="mockup-line w-full"></div>
+                <div className="mockup-line w-3/4"></div>
+                <div className="mockup-line w-1/2"></div>
+                <div className="mockup-grid">
+                  <div className="mockup-box"></div>
+                  <div className="mockup-box"></div>
+                </div>
+              </div>
+            </div>
+            <div className="glow-effect"></div>
+          </div>
+        </section>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <section id="features" className="features-section">
+          <h2 className="section-title">Core Features</h2>
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-icon file-icon">📁</div>
+              <h3>Resource Management</h3>
+              <p>Easily upload, organize, and download study materials, lecture notes, and assignments.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon track-icon">📈</div>
+              <h3>Progress Tracking</h3>
+              <p>Monitor your academic performance with intuitive dashboards and analytics tools.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon connect-icon">🤝</div>
+              <h3>Collaborative Spaces</h3>
+              <p>Connect with peers, form study groups, and engage in real-time discussions.</p>
+            </div>
+          </div>
+        </section>
+      </main>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-brand">
+            <span className="logo-text">Stunet</span>
+            <p>Elevating education through technology.</p>
+          </div>
+          <div className="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Support</a>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} Stunet. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
   )
 }
 
