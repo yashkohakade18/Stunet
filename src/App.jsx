@@ -1,23 +1,14 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+import './App.css';
 
 function App() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div className="app-container">
-      <nav className="navbar">
-        <div className="logo-container">
-          <div className="logo-icon"></div>
-          <span className="logo-text">Stunet</span>
-        </div>
-        <div className="nav-links">
-          <a href="#features">Features</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <button className="login-btn">Login / Sign Up</button>
-      </nav>
+      <Navbar />
 
       <main>
         <section className="hero-section">
@@ -82,24 +73,9 @@ function App() {
         </section>
       </main>
 
-      <footer className="footer">
-        <div className="footer-content">
-          <div className="footer-brand">
-            <span className="logo-text">Stunet</span>
-            <p>Elevating education through technology.</p>
-          </div>
-          <div className="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Support</a>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Stunet. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
