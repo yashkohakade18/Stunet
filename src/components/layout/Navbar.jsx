@@ -12,6 +12,7 @@ const Navbar = () => {
         <span className="logo-text">Stunet</span>
       </Link>
       <div className="nav-links">
+        <NavLink to="/dashboard">Dashboard</NavLink>
         <NavLink to="/features">Features</NavLink>
         <NavLink to="/about">About</NavLink>
         <NavLink to="/contact">Contact</NavLink>
