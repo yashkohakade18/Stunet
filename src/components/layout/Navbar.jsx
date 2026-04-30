@@ -1,16 +1,17 @@
 import React from 'react';
+import { NavLink, Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <div className="logo-container">
+      <Link to="/" className="logo-container" style={{ textDecoration: 'none' }}>
         <div className="logo-icon"></div>
         <span className="logo-text">Stunet</span>
-      </div>
+      </Link>
       <div className="nav-links">
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <NavLink to="/features">Features</NavLink>
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="/contact">Contact</NavLink>
       </div>
       <button className="login-btn">Login / Sign Up</button>
     </nav>
