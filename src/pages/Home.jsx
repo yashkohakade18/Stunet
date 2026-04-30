@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../components/ui/Button';
+import Card from '../components/ui/Card';
 
 const Home = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -50,21 +51,21 @@ const Home = () => {
       <section id="features" className="features-section">
         <h2 className="section-title">Core Features</h2>
         <div className="features-grid">
-          <div className="feature-card">
+          <Card>
             <div className="feature-icon file-icon">📁</div>
             <h3>Resource Management</h3>
             <p>Easily upload, organize, and download study materials, lecture notes, and assignments.</p>
-          </div>
-          <div className="feature-card">
+          </Card>
+          <Card>
             <div className="feature-icon track-icon">📈</div>
             <h3>Progress Tracking</h3>
             <p>Monitor your academic performance with intuitive dashboards and analytics tools.</p>
-          </div>
-          <div className="feature-card">
+          </Card>
+          <Card>
             <div className="feature-icon connect-icon">🤝</div>
             <h3>Collaborative Spaces</h3>
             <p>Connect with peers, form study groups, and engage in real-time discussions.</p>
-          </div>
+          </Card>
         </div>
       </section>
     </main>
