@@ -1,8 +1,15 @@
 import React from 'react';
 
-const Card = ({ children, className = '', ...props }) => {
+const Card = ({ children, className = '', hoverable = true, glass = false, ...props }) => {
+  const classes = [
+    'feature-card',
+    hoverable ? 'card-hoverable' : '',
+    glass ? 'card-glass' : '',
+    className
+  ].filter(Boolean).join(' ');
+
   return (
-    <div className={`feature-card ${className}`} {...props}>
+    <div className={classes} {...props}>
       {children}
     </div>
   );
