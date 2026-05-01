@@ -4,7 +4,8 @@ import PageWrapper from '../components/layout/PageWrapper';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { COLLEGES } from '../data/colleges';
-import { MapPin, Globe, Phone, Mail, GraduationCap, Star, BookOpen, Users } from 'lucide-react';
+import { MapPin, Globe, Phone, Mail, GraduationCap, Star, BookOpen, Users, MessageSquare } from 'lucide-react';
+import ReviewCard from '../components/college/ReviewCard';
 
 export default function CollegeDetail() {
   const { id } = useParams();
@@ -109,6 +110,22 @@ export default function CollegeDetail() {
                     <div className="text-xl font-extrabold text-var(--text-h)">{stat.value}</div>
                     <div className="text-xs text-var(--text) uppercase tracking-tighter">{stat.label}</div>
                   </Card>
+                ))}
+              </div>
+            </section>
+
+            <section>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-var(--text-h)">Student Reviews</h2>
+                <Button variant="secondary" size="sm">Write a Review</Button>
+              </div>
+              <div className="space-y-4">
+                {[
+                  { user: 'Rahul Sharma', date: '2 days ago', rating: 5, comment: 'Excellent infrastructure and faculty. The placement cell is very active and helpful.' },
+                  { user: 'Sneha Patil', date: '1 week ago', rating: 4, comment: 'Great campus life, but the canteen food could be better. Academics are top-notch though.' },
+                  { user: 'Amit Verma', date: '2 weeks ago', rating: 4, comment: 'Very competitive environment which keeps you motivated. The labs are well-equipped.' }
+                ].map((review, idx) => (
+                  <ReviewCard key={idx} review={review} />
                 ))}
               </div>
             </section>
