@@ -1,14 +1,17 @@
 import React from 'react';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import { useAuth } from '../context/AuthContext';
 
 const Dashboard = () => {
+  const { user } = useAuth();
+  const userName = user?.name?.split(' ')[0] || 'Student';
   return (
     <main style={{ padding: '2rem 3rem', flex: 1, background: 'var(--bg)' }}>
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <div>
           <h1 className="hero-title" style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>Student <span className="highlight">Dashboard</span></h1>
-          <p style={{ color: 'var(--text)', fontSize: '1.1rem' }}>Welcome back, Alex! Here is your academic overview.</p>
+          <p style={{ color: 'var(--text)', fontSize: '1.1rem' }}>Welcome back, {userName}! Here is your academic overview.</p>
         </div>
         <Button variant="primary">+ Upload Assignment</Button>
       </header>
