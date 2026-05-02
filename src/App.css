@@ -723,6 +723,50 @@
   border-radius: 4px;
 }
 
+/* Breadcrumbs Styles */
+.breadcrumbs {
+  margin-bottom: 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.breadcrumbs ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.breadcrumb-link {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-link:hover {
+  color: var(--accent);
+}
+
+.breadcrumb-link.home {
+  background: var(--social-bg);
+  padding: 0.4rem;
+  border-radius: 6px;
+}
+
+.breadcrumb-separator {
+  color: var(--border);
+}
+
+.breadcrumb-current {
+  color: var(--text-h);
+  font-weight: 700;
+}
+
 /* Review Card Styles */
 .review-card {
   background: var(--bg);
