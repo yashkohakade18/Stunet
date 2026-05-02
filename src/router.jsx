@@ -7,6 +7,7 @@ import Rounds       from './pages/Rounds'
 import CollegeMap   from './pages/CollegeMap'
 import Papers       from './pages/Papers'
 import Notes        from './pages/Notes'
+import Favorites    from './pages/Favorites'
 import NotFound     from './pages/NotFound'
 
 const router = createBrowserRouter([
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       { path: 'map',          element: <CollegeMap /> },
       { path: 'papers',       element: <Papers /> },
       { path: 'notes',        element: <Notes /> },
+      { path: 'favorites',    element: <Favorites /> },
       { path: '*',            element: <NotFound /> },
     ],
   },

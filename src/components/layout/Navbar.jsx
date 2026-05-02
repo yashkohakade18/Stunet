@@ -26,6 +26,7 @@ const Navbar = () => {
         <NavLink to="/rounds">Rounds</NavLink>
         <NavLink to="/about">About</NavLink>
         <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/favorites">Favorites</NavLink>
       </div>
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
         <ThemeToggle />
