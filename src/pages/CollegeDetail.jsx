@@ -10,6 +10,14 @@ import ReviewCard from '../components/college/ReviewCard';
 export default function CollegeDetail() {
   const { id } = useParams();
   const [college, setCollege] = useState(null);
+  const [activeTab, setActiveTab] = useState('overview');
+
+  const tabs = [
+    { id: 'overview', label: 'Overview', icon: <GraduationCap size={18} /> },
+    { id: 'courses', label: 'Courses & Fees', icon: <BookOpen size={18} /> },
+    { id: 'reviews', label: 'Reviews', icon: <MessageSquare size={18} /> },
+    { id: 'stats', label: 'Statistics', icon: <Users size={18} /> }
+  ];
 
   useEffect(() => {
     const found = COLLEGES.find(c => c.id === id);
@@ -68,67 +76,110 @@ export default function CollegeDetail() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Info */}
-          <div className="lg:col-span-2 space-y-8">
-            <section>
-              <h2 className="text-2xl font-bold mb-4 text-var(--text-h)">About College</h2>
-              <p className="text-var(--text) leading-relaxed">
-                {college.description || `The ${college.name} is one of the premier educational institutions in ${college.location}. 
-                Known for its excellence in engineering and technology, the college has been a hub for innovation and 
-                academic brilliance for decades. It offers a wide range of undergraduate and postgraduate programs 
-                designed to meet the evolving needs of the industry.`}
-              </p>
-            </section>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Tabs Navigation */}
+            <div className="tabs-nav">
+              {tabs.map(tab => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`tab-btn ${activeTab === tab.id ? 'active' : ''}`}
+                >
+                  {tab.icon}
+                  {tab.label}
+                </button>
+              ))}
+            </div>
 
-            <section>
-              <h2 className="text-2xl font-bold mb-6 text-var(--text-h)">Available Branches</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {college.branches?.map((branch, idx) => (
-                  <Card key={idx} hoverable={false} className="p-5 flex items-center gap-4">
-                    <div className="w-12 h-12 bg-accent-bg rounded-xl flex items-center justify-center text-accent">
-                      <BookOpen size={24} />
+            <Card className="detail-card">
+              <CardContent>
+                {activeTab === 'overview' && (
+                  <div className="space-y-6 animate-fade-in">
+                    <section>
+                      <h2 className="detail-section-title">About College</h2>
+                      <p className="detail-text">
+                        {college.description || `The ${college.name} is one of the premier educational institutions in ${college.location}. 
+                        Known for its excellence in engineering and technology, the college has been a hub for innovation and 
+                        academic brilliance for decades.`}
+                      </p>
+                    </section>
+                    
+                    <section>
+                      <h2 className="detail-section-title">Infrastructure</h2>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        {['Wi-Fi Campus', 'Modern Labs', 'Central Library', 'Hostel', 'Sports Complex', 'Cafeteria'].map(item => (
+                          <div key={item} className="infra-tag">
+                            <div className="dot green"></div>
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </section>
+                  </div>
+                )}
+
+                {activeTab === 'courses' && (
+                  <div className="space-y-6 animate-fade-in">
+                    <h2 className="detail-section-title">Available Branches</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {college.branches?.map((branch, idx) => (
+                        <Card key={idx} hoverable={false} className="course-card">
+                          <CardContent className="p-4 flex items-center gap-4">
+                            <div className="w-10 h-10 bg-accent-bg rounded-lg flex items-center justify-center text-accent">
+                              <BookOpen size={20} />
+                            </div>
+                            <div>
+                              <h4 className="font-bold">{branch}</h4>
+                              <p className="text-xs opacity-70">Duration: 4 Years</p>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
                     </div>
-                    <div>
-                      <h4 className="font-bold text-var(--text-h)">{branch}</h4>
-                      <p className="text-xs text-var(--text)">Duration: 4 Years</p>
+                  </div>
+                )}
+
+                {activeTab === 'reviews' && (
+                  <div className="space-y-6 animate-fade-in">
+                    <div className="flex items-center justify-between">
+                      <h2 className="detail-section-title">Student Reviews</h2>
+                      <Button variant="outline" size="sm">Write a Review</Button>
                     </div>
-                  </Card>
-                ))}
-              </div>
-            </section>
+                    <div className="space-y-4">
+                      {[
+                        { user: 'Rahul Sharma', date: '2 days ago', rating: 5, comment: 'Excellent infrastructure and faculty. The placement cell is very active and helpful.' },
+                        { user: 'Sneha Patil', date: '1 week ago', rating: 4, comment: 'Great campus life, but the canteen food could be better.' },
+                        { user: 'Amit Verma', date: '2 weeks ago', rating: 4, comment: 'Very competitive environment which keeps you motivated.' }
+                      ].map((review, idx) => (
+                        <ReviewCard key={idx} review={review} />
+                      ))}
+                    </div>
+                  </div>
+                )}
 
-            <section>
-              <h2 className="text-2xl font-bold mb-6 text-var(--text-h)">Key Statistics</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                  { icon: <Users />, label: 'Students', value: '5000+' },
-                  { icon: <GraduationCap />, label: 'Placements', value: '92%' },
-                  { icon: <Star />, label: 'NIRF Rank', value: '#42' },
-                  { icon: <BookOpen />, label: 'Faculty', value: '250+' },
-                ].map((stat, idx) => (
-                  <Card key={idx} className="p-4 text-center" hoverable={false}>
-                    <div className="text-accent mb-2 flex justify-center">{stat.icon}</div>
-                    <div className="text-xl font-extrabold text-var(--text-h)">{stat.value}</div>
-                    <div className="text-xs text-var(--text) uppercase tracking-tighter">{stat.label}</div>
-                  </Card>
-                ))}
-              </div>
-            </section>
-
-            <section>
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-var(--text-h)">Student Reviews</h2>
-                <Button variant="secondary" size="sm">Write a Review</Button>
-              </div>
-              <div className="space-y-4">
-                {[
-                  { user: 'Rahul Sharma', date: '2 days ago', rating: 5, comment: 'Excellent infrastructure and faculty. The placement cell is very active and helpful.' },
-                  { user: 'Sneha Patil', date: '1 week ago', rating: 4, comment: 'Great campus life, but the canteen food could be better. Academics are top-notch though.' },
-                  { user: 'Amit Verma', date: '2 weeks ago', rating: 4, comment: 'Very competitive environment which keeps you motivated. The labs are well-equipped.' }
-                ].map((review, idx) => (
-                  <ReviewCard key={idx} review={review} />
-                ))}
-              </div>
-            </section>
+                {activeTab === 'stats' && (
+                  <div className="space-y-8 animate-fade-in">
+                    <h2 className="detail-section-title">Key Statistics</h2>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {[
+                        { icon: <Users size={20} />, label: 'Students', value: '5000+' },
+                        { icon: <GraduationCap size={20} />, label: 'Placements', value: '92%' },
+                        { icon: <Star size={20} />, label: 'NIRF Rank', value: '#42' },
+                        { icon: <BookOpen size={20} />, label: 'Faculty', value: '250+' },
+                      ].map((stat, idx) => (
+                        <div key={idx} className="stat-box text-center p-4 rounded-xl border border-[var(--border)]">
+                          <div className="text-accent mb-2 flex justify-center">{stat.icon}</div>
+                          <div className="text-xl font-extrabold">{stat.value}</div>
+                          <div className="text-[10px] opacity-60 uppercase tracking-widest">{stat.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </div>
 
           {/* Sidebar / Quick Actions */}
