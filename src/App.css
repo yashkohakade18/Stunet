@@ -723,6 +723,135 @@
   border-radius: 4px;
 }
 
+/* Papers Page Styles */
+.papers-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.papers-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--text-h);
+}
+
+.papers-subtitle {
+  color: var(--text);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.papers-filter-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .papers-filter-bar {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+  .search-input-wrapper {
+    flex: 1;
+  }
+}
+
+.select-filters {
+  display: flex;
+  gap: 1rem;
+}
+
+.paper-select {
+  padding: 0.75rem 1.25rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-h);
+  font-size: 0.9rem;
+  font-weight: 600;
+  outline: none;
+  transition: all 0.2s ease;
+  min-width: 140px;
+}
+
+.paper-select:focus {
+  border-color: var(--accent);
+}
+
+.paper-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.paper-card:hover {
+  transform: translateY(-8px);
+}
+
+.paper-icon-box {
+  width: 56px;
+  height: 56px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px -4px var(--accent-bg);
+}
+
+.paper-type-badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.paper-type-badge.end-sem {
+  background: rgba(0, 210, 255, 0.1);
+  color: #00D2FF;
+}
+
+.paper-type-badge.other-sem {
+  background: rgba(0, 255, 157, 0.1);
+  color: #00FF9D;
+}
+
+.paper-card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-h);
+  margin-bottom: 1rem;
+}
+
+.paper-details {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.empty-papers {
+  text-align: center;
+  padding: 5rem 0;
+  background: var(--social-bg);
+  border: 2px dashed var(--border);
+  border-radius: 24px;
+}
+
 /* Notes Page Styles */
 .notes-header {
   display: flex;
