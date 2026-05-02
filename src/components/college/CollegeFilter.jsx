@@ -1,5 +1,7 @@
 import { Search, SlidersHorizontal, X } from 'lucide-react'
 import { BRANCHES, LOCATIONS, COLLEGE_TYPES } from '../../data/colleges'
+import Input from '../ui/Input'
+import Button from '../ui/Button'
 
 export default function CollegeFilter({ filters, onChange, resultCount, total }) {
   const set = (key, val) => onChange({ ...filters, [key]: val })
@@ -32,31 +34,29 @@ export default function CollegeFilter({ filters, onChange, resultCount, total })
       </div>
 
       {/* Filters row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {/* Search */}
-        <div className="relative lg:col-span-2">
-          <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4A6480]" />
-          <input
+        <div className="lg:col-span-2">
+          <Input
+            icon={Search}
             value={filters.query}
             onChange={(e) => set('query', e.target.value)}
             placeholder="Search college name or city..."
-            className="w-full bg-[#080E16] border border-[#2A3F55] rounded-lg pl-9 pr-3 py-2.5 text-sm text-[#E8F4FF] placeholder-[#4A6480] outline-none focus:border-[rgba(0,210,255,0.4)] transition-colors"
           />
         </div>
 
         {/* CET Score */}
         <div className="relative">
-          <input
+          <Input
             type="number"
             min="0"
             max="200"
             value={filters.cetScore}
             onChange={(e) => set('cetScore', e.target.value)}
             placeholder="Your CET score"
-            className="w-full bg-[#080E16] border border-[#2A3F55] rounded-lg px-3 py-2.5 text-sm text-[#E8F4FF] placeholder-[#4A6480] outline-none focus:border-[rgba(0,210,255,0.4)] transition-colors"
           />
           {filters.cetScore && (
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-[#00D2FF] font-mono">
+            <span className="percentile-badge">
               percentile
             </span>
           )}
