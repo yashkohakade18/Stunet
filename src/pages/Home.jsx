@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../components/ui/Button';
-import Card from '../components/ui/Card';
+import Card, { CardContent, CardHeader } from '../components/ui/Card';
+import heroImage from '../assets/hero.png';
 
 const Home = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -28,21 +29,8 @@ const Home = () => {
           </div>
         </div>
         <div className="hero-visual">
-          <div className="glass-card">
-            <div className="mockup-header">
-              <div className="dot red"></div>
-              <div className="dot yellow"></div>
-              <div className="dot green"></div>
-            </div>
-            <div className="mockup-body">
-              <div className="mockup-line w-full"></div>
-              <div className="mockup-line w-3/4"></div>
-              <div className="mockup-line w-1/2"></div>
-              <div className="mockup-grid">
-                <div className="mockup-box"></div>
-                <div className="mockup-box"></div>
-              </div>
-            </div>
+          <div className="hero-image-wrapper">
+            <img src={heroImage} alt="Stunet Dashboard" className="hero-image" />
           </div>
           <div className="glow-effect"></div>
         </div>
@@ -52,19 +40,31 @@ const Home = () => {
         <h2 className="section-title">Core Features</h2>
         <div className="features-grid">
           <Card>
-            <div className="feature-icon file-icon">📁</div>
-            <h3>Resource Management</h3>
-            <p>Easily upload, organize, and download study materials, lecture notes, and assignments.</p>
+            <CardHeader>
+              <div className="feature-icon file-icon">📁</div>
+              <h3>Resource Management</h3>
+            </CardHeader>
+            <CardContent>
+              <p>Easily upload, organize, and download study materials, lecture notes, and assignments.</p>
+            </CardContent>
           </Card>
           <Card>
-            <div className="feature-icon track-icon">📈</div>
-            <h3>Progress Tracking</h3>
-            <p>Monitor your academic performance with intuitive dashboards and analytics tools.</p>
+            <CardHeader>
+              <div className="feature-icon track-icon">📈</div>
+              <h3>Progress Tracking</h3>
+            </CardHeader>
+            <CardContent>
+              <p>Monitor your academic performance with intuitive dashboards and analytics tools.</p>
+            </CardContent>
           </Card>
           <Card>
-            <div className="feature-icon connect-icon">🤝</div>
-            <h3>Collaborative Spaces</h3>
-            <p>Connect with peers, form study groups, and engage in real-time discussions.</p>
+            <CardHeader>
+              <div className="feature-icon connect-icon">🤝</div>
+              <h3>Collaborative Spaces</h3>
+            </CardHeader>
+            <CardContent>
+              <p>Connect with peers, form study groups, and engage in real-time discussions.</p>
+            </CardContent>
           </Card>
         </div>
       </section>

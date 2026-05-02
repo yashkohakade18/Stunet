@@ -685,3 +685,26 @@
   background: #2e303a;
   color: #f1c40f;
 }
+
+/* Hero Image Styles */
+.hero-image-wrapper {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  border: 1px solid var(--border);
+  position: relative;
+  z-index: 10;
+  transition: transform 0.5s ease;
+}
+
+.hero-image-wrapper:hover {
+  transform: scale(1.02) rotate(1deg);
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
