@@ -27,6 +27,7 @@ const Navbar = () => {
         <NavLink to="/about">About</NavLink>
         <NavLink to="/contact">Contact</NavLink>
         <NavLink to="/favorites">Favorites</NavLink>
+        <NavLink to="/profile">Profile</NavLink>
       </div>
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
         <ThemeToggle />
