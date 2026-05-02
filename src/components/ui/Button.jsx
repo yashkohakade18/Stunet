@@ -9,7 +9,15 @@ const Button = ({
   disabled,
   ...props 
 }) => {
-  const baseClass = variant === 'primary' ? 'primary-btn' : 'secondary-btn';
+  const variants = {
+    primary: 'primary-btn',
+    secondary: 'secondary-btn',
+    outline: 'outline-btn',
+    ghost: 'ghost-btn',
+    danger: 'danger-btn'
+  };
+
+  const baseClass = variants[variant] || variants.primary;
   const sizeClass = `btn-${size}`;
   const loadingClass = isLoading ? 'btn-loading' : '';
   
