@@ -3,6 +3,7 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 import { useAuth } from '../../context/AuthContext';
 import Button from '../ui/Button';
+import ThemeToggle from '../ui/ThemeToggle';
 
 const Navbar = () => {
   const { isDarkMode, toggleTheme } = useTheme();
@@ -27,13 +28,7 @@ const Navbar = () => {
         <NavLink to="/contact">Contact</NavLink>
       </div>
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-        <button 
-          onClick={toggleTheme} 
-          style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1.5rem', marginRight: '0.5rem' }}
-          title="Toggle Dark Mode"
-        >
-          {isDarkMode ? '☀️' : '🌙'}
-        </button>
+        <ThemeToggle />
         
         {isAuthenticated ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
