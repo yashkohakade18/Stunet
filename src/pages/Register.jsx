@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Button from '../components/ui/Button';
-import Card from '../components/ui/Card';
+import Card, { CardContent } from '../components/ui/Card';
+import Input from '../components/ui/Input';
+import { User, Mail, Lock, UserPlus } from 'lucide-react';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -26,139 +28,67 @@ const Register = () => {
   };
 
   return (
-    <div className="auth-container" style={{ 
-      minHeight: 'calc(100vh - 160px)', 
-      display: 'flex', 
-      alignItems: 'center', 
-      justifyContent: 'center',
-      background: 'var(--bg)',
-      padding: '2rem'
-    }}>
-      <Card style={{ 
-        maxWidth: '450px', 
-        width: '100%', 
-        padding: '3rem',
-        background: 'rgba(15, 23, 42, 0.8)',
-        backdropFilter: 'blur(12px)',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
-      }}>
-        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-          <h1 style={{ 
-            fontSize: '2rem', 
-            fontWeight: 800, 
-            color: 'var(--text-h)', 
-            marginBottom: '0.5rem',
-            fontFamily: 'Syne, sans-serif'
-          }}>
-            Create <span className="highlight">Account</span>
-          </h1>
-          <p style={{ color: 'var(--text)', fontSize: '0.95rem' }}>
-            Join the Stunet community today
-          </p>
-        </div>
+    <div className="auth-page">
+      <Card className="auth-card" hoverable={false}>
+        <CardContent className="p-8">
+          <div className="auth-header">
+            <div className="auth-icon-circle">
+              <UserPlus size={24} />
+            </div>
+            <h1 className="auth-title">Create <span className="highlight">Account</span></h1>
+            <p className="auth-subtitle">Join the Stunet community today</p>
+          </div>
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          <div className="form-group">
-            <label style={{ 
-              display: 'block', 
-              marginBottom: '0.5rem', 
-              fontSize: '0.875rem', 
-              fontWeight: 500,
-              color: 'var(--text-h)'
-            }}>
-              Full Name
-            </label>
-            <input 
-              type="text" 
-              required 
+          <form onSubmit={handleSubmit} className="auth-form">
+            <Input
+              label="Full Name"
+              type="text"
+              required
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="John Doe"
-              style={{
-                width: '100%',
-                padding: '0.75rem 1rem',
-                background: 'rgba(0, 0, 0, 0.2)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                borderRadius: '0.5rem',
-                color: 'var(--text-h)',
-                outline: 'none',
-              }}
+              icon={User}
             />
-          </div>
 
-          <div className="form-group">
-            <label style={{ 
-              display: 'block', 
-              marginBottom: '0.5rem', 
-              fontSize: '0.875rem', 
-              fontWeight: 500,
-              color: 'var(--text-h)'
-            }}>
-              Email Address
-            </label>
-            <input 
-              type="email" 
-              required 
+            <Input
+              label="Email Address"
+              type="email"
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="name@example.com"
-              style={{
-                width: '100%',
-                padding: '0.75rem 1rem',
-                background: 'rgba(0, 0, 0, 0.2)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                borderRadius: '0.5rem',
-                color: 'var(--text-h)',
-                outline: 'none',
-              }}
+              icon={Mail}
             />
-          </div>
 
-          <div className="form-group">
-            <label style={{ 
-              display: 'block', 
-              marginBottom: '0.5rem', 
-              fontSize: '0.875rem', 
-              fontWeight: 500,
-              color: 'var(--text-h)'
-            }}>
-              Password
-            </label>
-            <input 
-              type="password" 
-              required 
+            <Input
+              label="Password"
+              type="password"
+              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              style={{
-                width: '100%',
-                padding: '0.75rem 1rem',
-                background: 'rgba(0, 0, 0, 0.2)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                borderRadius: '0.5rem',
-                color: 'var(--text-h)',
-                outline: 'none',
-              }}
+              icon={Lock}
             />
+
+            <div className="auth-actions">
+              <Button 
+                type="submit" 
+                variant="primary" 
+                className="w-full"
+                isLoading={isLoading}
+              >
+                Create Account
+              </Button>
+            </div>
+          </form>
+
+          <div className="auth-footer">
+            Already have an account?{' '}
+            <Link to="/login" className="auth-link">
+              Sign In
+            </Link>
           </div>
-
-          <Button 
-            type="submit" 
-            variant="primary" 
-            style={{ width: '100%', marginTop: '0.5rem', height: '3rem' }}
-            disabled={isLoading}
-          >
-            {isLoading ? 'Creating account...' : 'Create Account'}
-          </Button>
-        </form>
-
-        <div style={{ textAlign: 'center', marginTop: '2rem', fontSize: '0.875rem', color: 'var(--text)' }}>
-          Already have an account?{' '}
-          <Link to="/login" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>
-            Sign In
-          </Link>
-        </div>
+        </CardContent>
       </Card>
     </div>
   );
