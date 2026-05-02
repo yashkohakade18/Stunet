@@ -723,6 +723,75 @@
   border-radius: 4px;
 }
 
+/* Dashboard Page Styles */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.dashboard-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-h);
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-subtitle {
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
+.stat-card {
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text-h);
+}
+
+.course-progress-card {
+  border-radius: 16px;
+}
+
+.progress-container {
+  margin-top: 1rem;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.progress-bar-bg {
+  height: 8px;
+  background: var(--social-bg);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.announcement-card {
+  background: var(--accent-bg) !important;
+  border: 1px solid var(--accent-border) !important;
+}
+
 /* Papers Page Styles */
 .papers-header {
   text-align: center;
