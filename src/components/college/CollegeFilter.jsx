@@ -91,8 +91,31 @@ export default function CollegeFilter({ filters, onChange, resultCount, total })
         </select>
       </div>
 
+      {/* Quick Filters */}
+      <div className="flex flex-wrap items-center gap-3 mt-2">
+        <span className="text-xs text-[#7A9BB5] font-medium uppercase tracking-wider">Quick Filters:</span>
+        <button
+          onClick={() => set('type', 'Government')}
+          className={`filter-pill ${filters.type === 'Government' ? 'active' : ''}`}
+        >
+          Government
+        </button>
+        <button
+          onClick={() => set('naac', 'A+')}
+          className={`filter-pill ${filters.naac === 'A+' ? 'active' : ''}`}
+        >
+          Top Rated (NAAC A+)
+        </button>
+        <button
+          onClick={() => set('location', 'Pune')}
+          className={`filter-pill ${filters.location === 'Pune' ? 'active' : ''}`}
+        >
+          Pune Colleges
+        </button>
+      </div>
+
       {/* Type pills */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 mt-2">
         {['', ...COLLEGE_TYPES].map((t) => (
           <button
             key={t}
