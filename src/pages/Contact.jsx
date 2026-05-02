@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PageWrapper from '../components/layout/PageWrapper';
-import Card from '../components/ui/Card';
+import Card, { CardContent } from '../components/ui/Card';
 import Button from '../components/ui/Button';
-import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
+import Input from '../components/ui/Input';
+import { Mail, Phone, MapPin, Send, MessageSquare, User } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -23,107 +24,92 @@ const Contact = () => {
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Info */}
-          <div>
-            <h1 className="hero-title" style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}>
+          <div className="contact-info-section">
+            <h1 className="contact-title">
               Let's <span className="highlight">Talk</span>
             </h1>
-            <p className="text-var(--text) text-lg mb-12">
+            <p className="contact-subtitle">
               Have a suggestion, a bug report, or just want to say hi? We'd love to hear from you. 
               Our team usually responds within 24 hours.
             </p>
 
-            <div className="space-y-8">
-              <div className="flex items-start gap-5">
-                <div className="p-4 bg-accent-bg rounded-2xl text-accent">
-                  <Mail size={24} />
+            <div className="contact-methods">
+              {[
+                { icon: <Mail size={24} />, label: 'Email Us', value: 'support@stunet.edu.in' },
+                { icon: <Phone size={24} />, label: 'Call Us', value: '+91 20 8888 7777' },
+                { icon: <MapPin size={24} />, label: 'Visit Us', value: 'Education Hub, Pune - 411001' }
+              ].map((method, idx) => (
+                <div key={idx} className="method-item">
+                  <div className="method-icon">
+                    {method.icon}
+                  </div>
+                  <div>
+                    <h4 className="method-label">{method.label}</h4>
+                    <p className="method-value">{method.value}</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-var(--text-h)">Email Us</h4>
-                  <p className="text-var(--text)">support@stunet.edu.in</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-5">
-                <div className="p-4 bg-accent-bg rounded-2xl text-accent">
-                  <Phone size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-var(--text-h)">Call Us</h4>
-                  <p className="text-var(--text)">+91 20 8888 7777</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-5">
-                <div className="p-4 bg-accent-bg rounded-2xl text-accent">
-                  <MapPin size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-var(--text-h)">Visit Us</h4>
-                  <p className="text-var(--text)">Education Hub, Knowledge Park, Pune - 411001</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
           {/* Form */}
-          <Card className="p-8 md:p-12" glass={true}>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-white">
-                <MessageSquare size={20} />
-              </div>
-              <h2 className="text-2xl font-bold text-var(--text-h)">Send a Message</h2>
-            </div>
-
-            {status === 'success' ? (
-              <div className="py-12 text-center space-y-4">
-                <div className="w-16 h-16 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Send size={32} />
+          <Card className="contact-form-card" hoverable={false}>
+            <CardContent className="p-8 md:p-12">
+              <div className="form-header">
+                <div className="form-icon-circle">
+                  <MessageSquare size={20} />
                 </div>
-                <h3 className="text-2xl font-bold text-var(--text-h)">Message Sent!</h3>
-                <p className="text-var(--text)">Thank you for reaching out. We'll get back to you soon.</p>
+                <h2 className="form-title">Send a Message</h2>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-sm font-bold text-var(--text-h) mb-2 uppercase tracking-wider">Full Name</label>
-                  <input 
-                    type="text" 
+
+              {status === 'success' ? (
+                <div className="success-state">
+                  <div className="success-icon-circle">
+                    <Send size={32} />
+                  </div>
+                  <h3>Message Sent!</h3>
+                  <p>Thank you for reaching out. We'll get back to you soon.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="contact-form">
+                  <Input 
+                    label="Full Name"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     placeholder="Enter your name"
-                    className="w-full px-5 py-4 bg-black/10 border border-var(--border) rounded-2xl outline-none focus:border-accent text-var(--text-h)"
+                    icon={User}
                   />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-var(--text-h) mb-2 uppercase tracking-wider">Email Address</label>
-                  <input 
-                    type="email" 
+                  <Input 
+                    label="Email Address"
+                    type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     placeholder="name@example.com"
-                    className="w-full px-5 py-4 bg-black/10 border border-var(--border) rounded-2xl outline-none focus:border-accent text-var(--text-h)"
+                    icon={Mail}
                   />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-var(--text-h) mb-2 uppercase tracking-wider">Your Message</label>
-                  <textarea 
-                    rows="5"
-                    required
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    placeholder="Describe your query..."
-                    className="w-full px-5 py-4 bg-black/10 border border-var(--border) rounded-2xl outline-none focus:border-accent text-var(--text-h) resize-none"
-                  ></textarea>
-                </div>
-                <Button 
-                  type="submit" 
-                  className="w-full flex items-center justify-center gap-3 py-5"
-                  isLoading={status === 'sending'}
-                >
-                  <Send size={20} /> Send Message
-                </Button>
-              </form>
-            )}
+                  <div className="form-group">
+                    <label className="input-label">Your Message</label>
+                    <textarea 
+                      rows="4"
+                      required
+                      value={formData.message}
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      placeholder="How can we help you?"
+                      className="contact-textarea"
+                    ></textarea>
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full gap-3"
+                    isLoading={status === 'sending'}
+                  >
+                    <Send size={20} /> Send Message
+                  </Button>
+                </form>
+              )}
+            </CardContent>
           </Card>
         </div>
       </div>

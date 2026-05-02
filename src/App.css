@@ -723,6 +723,127 @@
   border-radius: 4px;
 }
 
+/* Contact Page Styles */
+.contact-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--text-h);
+  margin-bottom: 1.5rem;
+}
+
+.contact-subtitle {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 3rem;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.method-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.method-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.method-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-h);
+  margin: 0;
+}
+
+.method-value {
+  font-size: 1rem;
+  color: var(--text);
+  margin: 0.25rem 0 0 0;
+}
+
+.contact-form-card {
+  background: var(--bg) !important;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.form-icon-circle {
+  width: 40px;
+  height: 40px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-h);
+  margin: 0;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--social-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-h);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s;
+  resize: none;
+}
+
+.contact-textarea:focus {
+  border-color: var(--accent);
+  background: var(--bg);
+}
+
+.success-state {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.success-icon-circle {
+  width: 64px;
+  height: 64px;
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
 /* Dashboard Page Styles */
 .dashboard-header {
   display: flex;
