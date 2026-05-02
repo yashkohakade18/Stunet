@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
-import { MapPin, IndianRupee, GraduationCap, Pencil, Trash2, ChevronRight } from 'lucide-react'
+import { MapPin, IndianRupee, GraduationCap, Pencil, Trash2, ChevronRight, Heart } from 'lucide-react'
 import { formatFees } from '../../utils/formatters'
+import { useFavorites } from '../../hooks/useFavorites'
 
 export default function CollegeCard({ college, onEdit, onDelete }) {
+  const { isFavorite, toggleFavorite } = useFavorites();
   const typeColor = {
     Government: 'bg-[rgba(0,255,157,0.1)] text-[#00FF9D] border-[rgba(0,255,157,0.25)]',
     Private: 'bg-[rgba(0,210,255,0.1)] text-[#00D2FF] border-[rgba(0,210,255,0.25)]',
@@ -35,6 +37,13 @@ export default function CollegeCard({ college, onEdit, onDelete }) {
 
         {/* Action buttons */}
         <div className="flex gap-1.5 shrink-0">
+          <button
+            onClick={() => toggleFavorite(college.id)}
+            className={`p-2 rounded-lg transition-all ${isFavorite(college.id) ? 'text-red-500 bg-red-50/10' : 'text-[#7A9BB5] hover:text-red-400 hover:bg-[rgba(239,68,68,0.08)]'}`}
+            title={isFavorite(college.id) ? "Remove from Favorites" : "Add to Favorites"}
+          >
+            <Heart size={15} fill={isFavorite(college.id) ? "currentColor" : "none"} />
+          </button>
           <button
             onClick={() => onEdit(college)}
             className="p-2 rounded-lg text-[#7A9BB5] hover:text-[#00D2FF] hover:bg-[rgba(0,210,255,0.08)] transition-all"
