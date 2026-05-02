@@ -562,9 +562,7 @@
 .nav-links a.active {
   color: var(--accent);
   position: relative;
-}
-
-.nav-links a.active::after {
+}.nav-links a.active::after {
   content: '';
   position: absolute;
   bottom: -4px;
@@ -573,4 +571,70 @@
   height: 2px;
   background: var(--accent);
   border-radius: 2px;
+}
+
+/* Input Styles */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  text-align: left;
+}
+
+.input-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-h);
+  margin-left: 0.25rem;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-bg);
+}
+
+.input-field.with-icon {
+  padding-left: 2.75rem;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--text);
+  pointer-events: none;
+}
+
+.input-error {
+  border-color: #ff4757;
+}
+
+.input-error:focus {
+  border-color: #ff4757;
+  box-shadow: 0 0 0 4px rgba(255, 71, 87, 0.1);
+}
+
+.input-error-message {
+  font-size: 0.75rem;
+  color: #ff4757;
+  margin-left: 0.25rem;
+  font-weight: 500;
 }
