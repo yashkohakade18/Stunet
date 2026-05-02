@@ -723,6 +723,85 @@
   border-radius: 4px;
 }
 
+/* Review Card Styles */
+.review-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.review-avatar {
+  width: 36px;
+  height: 36px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-user {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-h);
+  margin: 0;
+}
+
+.review-date {
+  font-size: 0.75rem;
+  color: var(--text);
+  opacity: 0.7;
+  margin: 0;
+}
+
+.review-rating {
+  display: flex;
+  gap: 2px;
+}
+
+.star-active {
+  color: #f39c12;
+}
+
+.star-inactive {
+  color: var(--border);
+}
+
+.review-comment {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text);
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+.review-footer {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.like-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.like-btn:hover {
+  color: var(--accent);
+}
+
 /* Detail Page & Tabs Styles */
 .tabs-nav {
   display: flex;

@@ -1,34 +1,42 @@
 import React from 'react';
-import Card from '../ui/Card';
-import { Star, User } from 'lucide-react';
+import Card, { CardContent } from '../ui/Card';
+import { Star, User, ThumbsUp } from 'lucide-react';
 
 const ReviewCard = ({ review }) => {
   return (
-    <Card className="p-6" hoverable={false}>
-      <div className="flex justify-between items-start mb-4">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-accent-bg rounded-full flex items-center justify-center text-accent">
-            <User size={20} />
+    <Card className="review-card" hoverable={false}>
+      <CardContent className="p-5">
+        <div className="flex justify-between items-start mb-4">
+          <div className="flex items-center gap-3">
+            <div className="review-avatar">
+              <User size={18} />
+            </div>
+            <div>
+              <h4 className="review-user">{review.user}</h4>
+              <p className="review-date">{review.date}</p>
+            </div>
           </div>
-          <div>
-            <h4 className="font-bold text-var(--text-h) text-sm">{review.user}</h4>
-            <p className="text-xs text-var(--text)">{review.date}</p>
+          <div className="review-rating">
+            {[...Array(5)].map((_, i) => (
+              <Star 
+                key={i} 
+                size={12} 
+                fill={i < review.rating ? 'currentColor' : 'none'} 
+                className={i < review.rating ? 'star-active' : 'star-inactive'}
+              />
+            ))}
           </div>
         </div>
-        <div className="flex items-center gap-1 text-yellow-400">
-          {[...Array(5)].map((_, i) => (
-            <Star 
-              key={i} 
-              size={14} 
-              fill={i < review.rating ? 'currentColor' : 'none'} 
-              className={i < review.rating ? '' : 'text-var(--border)'}
-            />
-          ))}
+        <p className="review-comment">
+          {review.comment}
+        </p>
+        <div className="review-footer">
+          <button className="like-btn">
+            <ThumbsUp size={14} />
+            <span>Helpful</span>
+          </button>
         </div>
-      </div>
-      <p className="text-sm text-var(--text) leading-relaxed italic">
-        "{review.comment}"
-      </p>
+      </CardContent>
     </Card>
   );
 };
