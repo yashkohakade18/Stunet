@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Github, Twitter, Linkedin, Mail, Heart } from 'lucide-react';
+import { Globe, Send, MessageSquare, Mail, Heart } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -14,10 +14,10 @@ const Footer = () => {
               seamless, productive, and collaborative.
             </p>
             <div className="social-links">
-              <a href="#"><Github size={20} /></a>
-              <a href="#"><Twitter size={20} /></a>
-              <a href="#"><Linkedin size={20} /></a>
-              <a href="#"><Mail size={20} /></a>
+              <a href="#" title="Website"><Globe size={20} /></a>
+              <a href="#" title="Telegram"><Send size={20} /></a>
+              <a href="#" title="Community"><MessageSquare size={20} /></a>
+              <a href="#" title="Email"><Mail size={20} /></a>
             </div>
           </div>
           
