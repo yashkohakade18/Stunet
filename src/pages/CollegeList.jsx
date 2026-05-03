@@ -100,6 +100,7 @@ export default function CollegeList() {
               college={college}
               onEdit={setEditTarget}
               onDelete={setDeleteTarget}
+              userCET={filters.cetScore}
             />
           ))}
         </div>

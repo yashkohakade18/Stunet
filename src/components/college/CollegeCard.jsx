@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
-import { MapPin, IndianRupee, GraduationCap, Pencil, Trash2, ChevronRight, Heart } from 'lucide-react'
+import { MapPin, IndianRupee, GraduationCap, Pencil, Trash2, ChevronRight, Heart, CheckCircle2 } from 'lucide-react'
 import { formatFees } from '../../utils/formatters'
 import { useFavorites } from '../../hooks/useFavorites'
 
-export default function CollegeCard({ college, onEdit, onDelete }) {
+export default function CollegeCard({ college, onEdit, onDelete, userCET }) {
   const { isFavorite, toggleFavorite } = useFavorites();
+  
+  const isEligible = userCET && userCET >= college.minCET && userCET <= college.maxCET;
+
   const typeColor = {
     Government: 'bg-[rgba(0,255,157,0.1)] text-[#00FF9D] border-[rgba(0,255,157,0.25)]',
     Private: 'bg-[rgba(0,210,255,0.1)] text-[#00D2FF] border-[rgba(0,210,255,0.25)]',
@@ -12,7 +15,11 @@ export default function CollegeCard({ college, onEdit, onDelete }) {
   }
 
   return (
-    <div className="bg-[#101926] border border-[rgba(0,210,255,0.1)] rounded-2xl p-5 flex flex-col gap-4 hover:border-[rgba(0,210,255,0.28)] hover:-translate-y-0.5 transition-all duration-200 group">
+    <div className={`bg-[#101926] border rounded-2xl p-5 flex flex-col gap-4 hover:-translate-y-0.5 transition-all duration-200 group ${
+      isEligible 
+        ? 'border-[rgba(0,255,157,0.3)] shadow-[0_0_20px_rgba(0,255,157,0.05)]' 
+        : 'border-[rgba(0,210,255,0.1)] hover:border-[rgba(0,210,255,0.28)]'
+    }`}>
       {/* Top row */}
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
@@ -27,6 +34,11 @@ export default function CollegeCard({ college, onEdit, onDelete }) {
             {college.naac && (
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-[rgba(255,79,163,0.1)] text-[#FF4FA3] border border-[rgba(255,79,163,0.25)]">
                 NAAC {college.naac}
+              </span>
+            )}
+            {isEligible && (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-[rgba(0,255,157,0.15)] text-[#00FF9D] border border-[rgba(0,255,157,0.3)] animate-pulse">
+                <CheckCircle2 size={10} /> Match
               </span>
             )}
           </div>
@@ -87,13 +99,23 @@ export default function CollegeCard({ college, onEdit, onDelete }) {
         </div>
         <div className="h-1.5 bg-[#0C1520] rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-[#0099CC] to-[#00D2FF] rounded-full"
+            className={`h-full rounded-full transition-all duration-500 ${isEligible ? 'bg-gradient-to-r from-[#00FF9D] to-[#00D2FF]' : 'bg-gradient-to-r from-[#0099CC] to-[#00D2FF]'}`}
             style={{
               marginLeft: `${(college.minCET / 200) * 100}%`,
               width: `${((college.maxCET - college.minCET) / 200) * 100}%`,
             }}
           />
         </div>
+        {userCET && (
+          <div 
+            className="w-1 h-3 bg-white absolute z-10 -translate-x-1/2 rounded-full shadow-[0_0_8px_white]"
+            style={{ 
+              left: `${(userCET / 200) * 100}%`,
+              marginTop: '-9px',
+              display: 'none' // Hidden by default, can be enabled with relative parent
+            }}
+          />
+        )}
       </div>
 
       {/* Branches */}
