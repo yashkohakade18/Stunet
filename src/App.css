@@ -847,6 +847,65 @@
   border-radius: 4px;
 }
 
+/* Modal & Upload Styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modal-content {
+  background: var(--bg) !important;
+  animation: modalIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.upload-dropzone {
+  border: 2px dashed var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--social-bg);
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.upload-dropzone:hover {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.hidden-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.success-icon-box {
+  width: 80px;
+  height: 80px;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Chatbot Styles */
 .chatbot-wrapper {
   position: fixed;
