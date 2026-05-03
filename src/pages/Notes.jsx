@@ -7,12 +7,7 @@ import UploadModal from '../components/ui/UploadModal';
 import { useNotes } from '../hooks/useNotes';
 import { FileText, Download, ThumbsUp, Search, Plus, Filter, Book, Share2 } from 'lucide-react';
 
-const INITIAL_NOTES = [
-  { id: '1', title: 'Data Structures Quick Ref', branch: 'Computer Engineering', semester: 3, user: 'John Doe', upvotes: 42, size: '1.2 MB' },
-  { id: '2', title: 'Thermodynamics Formulas', branch: 'Mechanical Engineering', semester: 4, user: 'Sarah Smith', upvotes: 28, size: '0.8 MB' },
-  { id: '3', title: 'Network Security Basics', branch: 'Information Technology', semester: 6, user: 'Mike Ross', upvotes: 56, size: '2.5 MB' },
-  { id: '4', title: 'Calculus III Handout', branch: 'All Branches', semester: 2, user: 'Prof. Wilson', upvotes: 120, size: '4.1 MB' },
-];
+import { MOCK_NOTES } from '../utils/mockData';
 
 export default function Notes() {
   const { notes, addNote, upvoteNote } = useNotes();
@@ -20,7 +15,7 @@ export default function Notes() {
   const [activeBranch, setActiveBranch] = useState('All');
   const [isUploadOpen, setIsUploadOpen] = useState(false);
 
-  const displayNotes = notes.length > 0 ? notes : INITIAL_NOTES;
+  const displayNotes = notes.length > 0 ? [...notes, ...MOCK_NOTES] : MOCK_NOTES;
   
   const filteredNotes = displayNotes.filter(note => 
     (activeBranch === 'All' || note.branch === activeBranch) &&
