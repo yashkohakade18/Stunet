@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import Chatbot from './components/ai/Chatbot';
 import './App.css';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <main className="flex-1">
         <Outlet />
       </main>
+      <Chatbot />
       <Footer />
     </div>
   );
