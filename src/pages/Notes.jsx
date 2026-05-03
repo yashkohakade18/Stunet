@@ -3,6 +3,7 @@ import PageWrapper from '../components/layout/PageWrapper';
 import Card, { CardContent, CardHeader } from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
+import UploadModal from '../components/ui/UploadModal';
 import { useNotes } from '../hooks/useNotes';
 import { FileText, Download, ThumbsUp, Search, Plus, Filter, Book, Share2 } from 'lucide-react';
 
@@ -17,6 +18,7 @@ export default function Notes() {
   const { notes, addNote, upvoteNote } = useNotes();
   const [search, setSearch] = useState('');
   const [activeBranch, setActiveBranch] = useState('All');
+  const [isUploadOpen, setIsUploadOpen] = useState(false);
 
   const displayNotes = notes.length > 0 ? notes : INITIAL_NOTES;
   
@@ -24,6 +26,16 @@ export default function Notes() {
     (activeBranch === 'All' || note.branch === activeBranch) &&
     (note.title.toLowerCase().includes(search.toLowerCase()))
   );
+
+  const handleNewUpload = (data) => {
+    addNote({
+      ...data,
+      user: 'You',
+      upvotes: 0,
+      size: '0.0 MB',
+      semester: data.year === 'FE' ? 1 : 3 // simplified logic
+    });
+  };
 
   const branches = ['All', 'Computer Engineering', 'Information Technology', 'Mechanical Engineering', 'Civil Engineering'];
 
@@ -37,7 +49,11 @@ export default function Notes() {
             </h1>
             <p className="notes-subtitle">Access and share high-quality lecture notes and resources.</p>
           </div>
-          <Button variant="primary" className="flex items-center gap-2">
+          <Button 
+            variant="primary" 
+            className="flex items-center gap-2"
+            onClick={() => setIsUploadOpen(true)}
+          >
             <Plus size={20} /> Upload Note
           </Button>
         </header>
@@ -67,7 +83,7 @@ export default function Notes() {
                         <button 
                           key={branch}
                           onClick={() => setActiveBranch(branch)}
-                          className={`branch-btn ${activeTab === branch ? 'active' : ''}`}
+                          className={`branch-btn`}
                           style={{
                             background: activeBranch === branch ? 'var(--accent)' : 'transparent',
                             color: activeBranch === branch ? 'white' : 'var(--text)'
@@ -112,11 +128,11 @@ export default function Notes() {
                           </span>
                         </div>
                         <h3 className="note-card-title">{note.title}</h3>
-                        <p className="note-branch-tag">{note.branch}</p>
+                        <p className="note-branch-tag">{note.branch || note.department}</p>
                         <div className="note-meta">
                           <span className="font-bold">{note.user}</span>
                           <span className="separator"></span>
-                          <span>Semester {note.semester}</span>
+                          <span>{note.year || `Sem ${note.semester}`}</span>
                         </div>
                       </div>
 
@@ -150,6 +166,12 @@ export default function Notes() {
           </div>
         </div>
       </div>
+
+      <UploadModal 
+        isOpen={isUploadOpen} 
+        onClose={() => setIsUploadOpen(false)}
+        onUpload={handleNewUpload}
+      />
     </PageWrapper>
   );
 }
