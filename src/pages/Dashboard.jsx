@@ -3,12 +3,22 @@ import PageWrapper from '../components/layout/PageWrapper';
 import Card, { CardContent, CardHeader } from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { useAuth } from '../context/AuthContext';
-import { BarChart2, Calendar, CheckCircle, Clock, BookOpen, ExternalLink, TrendingUp, Award, Zap, Bell, ChevronRight, FileText } from 'lucide-react';
+import { BarChart2, Calendar, CheckCircle, Clock, BookOpen, ExternalLink, TrendingUp, Award, Zap, Bell, ChevronRight, FileText, Heart, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useColleges } from '../hooks/useColleges';
+import { useFavorites } from '../hooks/useFavorites';
 
 const Dashboard = () => {
   const { user } = useAuth();
+  const { colleges } = useColleges();
+  const { favorites } = useFavorites();
   const userName = user?.name?.split(' ')[0] || 'Student';
+
+  const favoriteColleges = colleges.filter(c => favorites.includes(c.id)).slice(0, 3);
+  const recommendedColleges = colleges
+    .filter(c => !favorites.includes(c.id))
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 2);
 
   const stats = [
     { label: 'Current GPA', value: '3.8', sub: '+0.2 this sem', icon: <BarChart2 size={20} />, color: '#a855f7', bg: 'rgba(168,85,247,0.1)' },
@@ -143,8 +153,10 @@ const Dashboard = () => {
               </div>
             </section>
 
-            <section>
-              <h2 className="section-title-sm">Announcements</h2>
+            <section className="animate-slide-up" style={{ animationDelay: '0.4s' }}>
+              <div className="section-row-header">
+                <h2 className="section-title-sm">Announcements</h2>
+              </div>
               <Card hoverable={false} className="announcement-card">
                 <CardContent className="p-5">
                   <div className="announcement-badge">NEW</div>
@@ -155,6 +167,52 @@ const Dashboard = () => {
                   <span className="announcement-time">2 hours ago</span>
                 </CardContent>
               </Card>
+            </section>
+
+            {/* Recent Favorites */}
+            <section className="animate-slide-up" style={{ animationDelay: '0.5s' }}>
+              <div className="section-row-header">
+                <h2 className="section-title-sm">Recent Favorites</h2>
+                <Link to="/favorites" className="see-all-btn">View All</Link>
+              </div>
+              {favoriteColleges.length > 0 ? (
+                <div className="space-y-3">
+                  {favoriteColleges.map(college => (
+                    <Link key={college.id} to={`/colleges/${college.id}`} className="mini-college-card">
+                      <div className="mini-college-img" style={{ backgroundImage: `url(https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=100&q=80)` }}></div>
+                      <div className="flex-1">
+                        <h4 className="mini-college-name">{college.name}</h4>
+                        <p className="mini-college-meta">{college.location}</p>
+                      </div>
+                      <Heart size={14} fill="#ff4757" className="text-[#ff4757]" />
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <div className="empty-mini-card">
+                  <Heart size={24} className="opacity-20 mb-2" />
+                  <p>No favorites yet</p>
+                </div>
+              )}
+            </section>
+
+            {/* Recommended */}
+            <section className="animate-slide-up" style={{ animationDelay: '0.6s' }}>
+              <div className="section-row-header">
+                <h2 className="section-title-sm">Recommended for You</h2>
+              </div>
+              <div className="space-y-3">
+                {recommendedColleges.map(college => (
+                  <Link key={college.id} to={`/colleges/${college.id}`} className="mini-college-card recommended">
+                    <div className="mini-college-img" style={{ backgroundImage: `url(https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=100&q=80)` }}></div>
+                    <div className="flex-1">
+                      <h4 className="mini-college-name">{college.name}</h4>
+                      <p className="mini-college-meta"><MapPin size={10} /> {college.location} · {college.minCET}%ile</p>
+                    </div>
+                    <ChevronRight size={14} className="text-[#7A9BB5]" />
+                  </Link>
+                ))}
+              </div>
             </section>
           </div>
         </div>
