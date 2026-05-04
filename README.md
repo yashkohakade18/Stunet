@@ -21,9 +21,17 @@ Stunet is a high-performance, professional-grade **Student Management & Admissio
 - **Notes Repository**: Peer-to-peer study material sharing platform with upvoting and branch-wise filtering.
 - **Exam Archive**: Extensive collection of previous year question papers (In-Sem, End-Sem, Unit Tests) for thorough preparation.
 
-### 4. 🔐 Smart Auth & Dashboard
+### 4. 🤖 Stunty AI Assistant
+- **Admission Guidance**: A persistent AI companion that provides instant answers to queries about cutoffs, fees, and college locations.
+- **Natural Interaction**: Sleek glassmorphism chat interface with intelligent (mock) response logic.
+
+### 5. 🔍 Global Search & Persistence
+- **Instant Access**: Command-bar style search available on every page (Shortcut: `Cmd/Ctrl + K`).
+- **Data Persistence**: LocalStorage integration for favorites, search history, and user preferences.
+
+### 6. 🔐 Smart Auth & Dashboard
 - **Personalized Experience**: Secure login and registration with a personalized dashboard tracking academic overview.
-- **Global State**: Context-driven architecture ensures your data is consistent across all views.
+- **Intelligent Recommendations**: Dashboard now suggests colleges based on your preferences and recent activity.
 
 ## 🎨 Design Philosophy
 - **Glassmorphism**: Elegant, semi-transparent UI elements for a premium feel.
