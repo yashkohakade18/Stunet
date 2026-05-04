@@ -18,6 +18,17 @@ export default function CollegeDetail() {
   const { isFavorite, toggleFavorite } = useFavorites();
   const [college, setCollege] = useState(null);
   const [activeTab, setActiveTab] = useState('overview');
+  const [isApplying, setIsApplying] = useState(false);
+  const [applied, setApplied] = useState(false);
+
+  const handleApply = (e) => {
+    e.preventDefault();
+    setIsApplying(true);
+    setTimeout(() => {
+      setIsApplying(false);
+      setApplied(true);
+    }, 1500);
+  };
 
   const tabs = [
     { id: 'overview', label: 'Overview', icon: <GraduationCap size={16} /> },
@@ -225,7 +236,19 @@ export default function CollegeDetail() {
               </div>
 
               <div className="sidebar-actions">
-                <a href="#" className="sidebar-primary-btn">Apply Now</a>
+                {applied ? (
+                  <div className="applied-success-badge">
+                    <CheckCircle size={18} /> Application Submitted
+                  </div>
+                ) : (
+                  <button 
+                    onClick={handleApply} 
+                    disabled={isApplying}
+                    className={`sidebar-primary-btn ${isApplying ? 'loading' : ''}`}
+                  >
+                    {isApplying ? 'Processing...' : 'Apply Now'}
+                  </button>
+                )}
                 <a href="#" className="sidebar-secondary-btn">Download Brochure</a>
               </div>
 
