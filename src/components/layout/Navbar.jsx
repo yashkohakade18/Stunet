@@ -2,13 +2,27 @@ import React from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 import { useAuth } from '../../context/AuthContext';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import Button from '../ui/Button';
 import ThemeToggle from '../ui/ThemeToggle';
-import { GraduationCap, FileText, BookOpen, Heart, User, LayoutDashboard, Calendar, Info, Mail } from 'lucide-react';
+import { GraduationCap, FileText, BookOpen, Heart, User, LayoutDashboard, Calendar, Search, Command } from 'lucide-react';
 
 const Navbar = () => {
   const { user, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [searchHistory, setSearchHistory] = useLocalStorage('stunet_search_history', []);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      const query = searchQuery.trim();
+      const updatedHistory = [query, ...searchHistory.filter(q => q !== query)].slice(0, 5);
+      setSearchHistory(updatedHistory);
+      navigate(`/colleges?query=${encodeURIComponent(query)}`);
+      setSearchQuery('');
+    }
+  };
 
   const handleLogout = () => {
     logout();
@@ -21,6 +35,21 @@ const Navbar = () => {
         <div className="logo-icon"></div>
         <span className="logo-text">Stunet</span>
       </Link>
+
+      <div className="global-search-container">
+        <form onSubmit={handleSearch} className="search-form">
+          <Search size={16} className="search-icon" />
+          <input 
+            type="text" 
+            placeholder="Search colleges..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <div className="search-kbd">
+            <Command size={10} /> K
+          </div>
+        </form>
+      </div>
       
       <div className="nav-links">
         <NavLink to="/dashboard" className={({isActive}) => isActive ? 'active' : ''}>
