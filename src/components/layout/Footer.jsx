@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GraduationCap, Github, Twitter, Linkedin, Mail, ArrowRight, Heart, BookOpen, FileText, Users, Map } from 'lucide-react';
+import { GraduationCap, Globe, X, Briefcase, Mail, ArrowRight, Heart, BookOpen, FileText, Users, Map } from 'lucide-react';
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -29,9 +29,9 @@ const Footer = () => {
   };
 
   const socials = [
-    { icon: <Github size={18} />, href: '#', label: 'GitHub' },
-    { icon: <Twitter size={18} />, href: '#', label: 'Twitter' },
-    { icon: <Linkedin size={18} />, href: '#', label: 'LinkedIn' },
+    { icon: <Globe size={18} />, href: '#', label: 'GitHub' },
+    { icon: <X size={18} />, href: '#', label: 'X' },
+    { icon: <Briefcase size={18} />, href: '#', label: 'LinkedIn' },
     { icon: <Mail size={18} />, href: '#', label: 'Email' },
   ];
 
