@@ -6,6 +6,7 @@ import Input from '../components/ui/Input';
 import UploadModal from '../components/ui/UploadModal';
 import { useNotes } from '../hooks/useNotes';
 import { FileText, Download, ThumbsUp, Search, Plus, Filter, Book, Share2 } from 'lucide-react';
+import { useToast } from '../context/ToastContext';
 
 import { MOCK_NOTES } from '../utils/mockData';
 
@@ -14,6 +15,7 @@ export default function Notes() {
   const [search, setSearch] = useState('');
   const [activeBranch, setActiveBranch] = useState('All');
   const [isUploadOpen, setIsUploadOpen] = useState(false);
+  const { toast } = useToast();
 
   const displayNotes = notes.length > 0 ? [...notes, ...MOCK_NOTES] : MOCK_NOTES;
   
@@ -30,6 +32,16 @@ export default function Notes() {
       size: '0.0 MB',
       semester: data.year === 'FE' ? 1 : 3 // simplified logic
     });
+    toast({ message: 'Note uploaded successfully!', type: 'success' });
+  };
+
+  const handleDownload = (noteTitle) => {
+    toast({ message: `Starting download: ${noteTitle}`, type: 'info' });
+  };
+
+  const handleShare = (noteTitle) => {
+    navigator.clipboard.writeText(`Check out these notes on Stunet: ${noteTitle}`);
+    toast({ message: 'Link copied to clipboard!', type: 'success' });
   };
 
   const branches = ['All', 'Computer Engineering', 'Information Technology', 'Mechanical Engineering', 'Civil Engineering'];
@@ -134,16 +146,19 @@ export default function Notes() {
                       <div className="note-card-footer">
                         <div className="flex items-center gap-4">
                           <button 
-                            onClick={() => upvoteNote(note.id)}
+                            onClick={() => {
+                              upvoteNote(note.id);
+                              toast({ message: 'Upvoted!', type: 'success' });
+                            }}
                             className="note-action-btn upvote"
                           >
                             <ThumbsUp size={14} /> {note.upvotes}
                           </button>
-                          <button className="note-action-btn share">
+                          <button className="note-action-btn share" onClick={() => handleShare(note.title)}>
                             <Share2 size={14} />
                           </button>
                         </div>
-                        <Button variant="secondary" size="sm" className="gap-2">
+                        <Button variant="secondary" size="sm" className="gap-2" onClick={() => handleDownload(note.title)}>
                           <Download size={14} /> Download
                         </Button>
                       </div>

@@ -6,12 +6,14 @@ import Input from '../components/ui/Input';
 import UploadModal from '../components/ui/UploadModal';
 import { MOCK_PAPERS } from '../utils/mockData';
 import { FileText, Download, Calendar, GraduationCap, Search, Filter, BookOpen, Plus } from 'lucide-react';
+import { useToast } from '../context/ToastContext';
 
 export default function Papers() {
   const [filter, setFilter] = useState({ year: 'All', branch: 'All', type: 'All' });
   const [search, setSearch] = useState('');
   const [isUploadOpen, setIsUploadOpen] = useState(false);
   const [userPapers, setUserPapers] = useState([]);
+  const { toast } = useToast();
 
   const allPapers = [...userPapers, ...MOCK_PAPERS];
 
@@ -29,6 +31,12 @@ export default function Papers() {
       semester: data.year === 'FE' ? 1 : 3, // Mock logic
       user: 'You'
     }, ...prev]);
+    toast({ message: 'Paper uploaded successfully!', type: 'success' });
+  };
+
+  const handleDownload = (paperTitle) => {
+    toast({ message: `Starting download: ${paperTitle}`, type: 'info' });
+    // In a real app, this would trigger a file download
   };
 
   return (
@@ -107,7 +115,7 @@ export default function Papers() {
                   </div>
                 </div>
 
-                <Button variant="primary" className="w-full gap-2">
+                <Button variant="primary" className="w-full gap-2" onClick={() => handleDownload(paper.title)}>
                   <Download size={18} /> Download PDF
                 </Button>
               </CardContent>

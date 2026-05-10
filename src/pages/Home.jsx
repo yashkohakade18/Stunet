@@ -68,7 +68,7 @@ const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="section-title text-left mb-6">Community Driven <br/><span className="highlight">Collaboration</span></h2>
-            <p className="text-[#7A9BB5] mb-8 leading-relaxed">
+            <p className="text-[var(--text)] mb-8 leading-relaxed">
               Join thousands of students sharing notes, question papers, and academic insights. 
               Our platform thrives on collective knowledge.
             </p>
@@ -83,7 +83,7 @@ const Home = () => {
                   <div className="w-5 h-5 rounded-full bg-[rgba(0,255,157,0.1)] flex items-center justify-center text-[#00FF9D]">
                     <CheckCircle size={14} />
                   </div>
-                  <span className="text-sm font-medium text-[#E8F4FF]">{text}</span>
+                  <span className="text-sm font-medium text-[var(--text-h)]">{text}</span>
                 </div>
               ))}
             </div>
@@ -105,8 +105,8 @@ const Home = () => {
                         {item.type === 'Note' ? <BookOpen size={18} /> : <MessageSquare size={18} />}
                       </div>
                       <div>
-                        <p className="text-sm font-bold text-[#E8F4FF] mb-0.5">{item.title}</p>
-                        <p className="text-[11px] text-[#7A9BB5]">Uploaded by {item.user}</p>
+                        <p className="text-sm font-bold text-[var(--text-h)] mb-0.5">{item.title}</p>
+                        <p className="text-[11px] text-[var(--text)]">Uploaded by {item.user}</p>
                       </div>
                     </div>
                     <span className="text-[10px] font-mono text-[#4A6480]">{item.time}</span>
@@ -126,8 +126,8 @@ const Home = () => {
               <div className="feature-icon-box mx-auto mb-6 bg-[rgba(0,210,255,0.08)] text-[#00D2FF]">
                 <BookOpen size={32} />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-[#E8F4FF]">Smart Repository</h3>
-              <p className="text-sm text-[#7A9BB5] leading-relaxed">
+              <h3 className="text-xl font-bold mb-4 text-[var(--text-h)]">Smart Repository</h3>
+              <p className="text-sm text-[var(--text)] leading-relaxed">
                 Organized collection of notes and papers filtered by year and department.
               </p>
             </CardContent>
@@ -137,8 +137,8 @@ const Home = () => {
               <div className="feature-icon-box mx-auto mb-6 bg-[rgba(255,79,163,0.08)] text-[#FF4FA3]">
                 <Users size={32} />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-[#E8F4FF]">Peer Network</h3>
-              <p className="text-sm text-[#7A9BB5] leading-relaxed">
+              <h3 className="text-xl font-bold mb-4 text-[var(--text-h)]">Peer Network</h3>
+              <p className="text-sm text-[var(--text)] leading-relaxed">
                 Connect with students from top colleges across Maharashtra.
               </p>
             </CardContent>
@@ -148,8 +148,8 @@ const Home = () => {
               <div className="feature-icon-box mx-auto mb-6 bg-[rgba(0,255,157,0.08)] text-[#00FF9D]">
                 <Sparkles size={32} />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-[#E8F4FF]">AI Assistance</h3>
-              <p className="text-sm text-[#7A9BB5] leading-relaxed">
+              <h3 className="text-xl font-bold mb-4 text-[var(--text-h)]">AI Assistance</h3>
+              <p className="text-sm text-[var(--text)] leading-relaxed">
                 Stunty AI helps you navigate admissions and find the best resources instantly.
               </p>
             </CardContent>

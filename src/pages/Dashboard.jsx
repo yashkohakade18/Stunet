@@ -209,7 +209,7 @@ const Dashboard = () => {
                       <h4 className="mini-college-name">{college.name}</h4>
                       <p className="mini-college-meta"><MapPin size={10} /> {college.location} · {college.minCET}%ile</p>
                     </div>
-                    <ChevronRight size={14} className="text-[#7A9BB5]" />
+                    <ChevronRight size={14} className="text-[var(--text)]" />
                   </Link>
                 ))}
               </div>

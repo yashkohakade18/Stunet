@@ -15,10 +15,10 @@ export default function CollegeCard({ college, onEdit, onDelete, userCET }) {
   }
 
   return (
-    <div className={`bg-[#101926] border rounded-2xl p-5 flex flex-col gap-4 hover:-translate-y-0.5 transition-all duration-200 group ${
+    <div className={`bg-[var(--bg-card)] border rounded-2xl p-5 flex flex-col gap-4 hover:-translate-y-0.5 transition-all duration-200 group ${
       isEligible 
         ? 'border-[rgba(0,255,157,0.3)] shadow-[0_0_20px_rgba(0,255,157,0.05)]' 
-        : 'border-[rgba(0,210,255,0.1)] hover:border-[rgba(0,210,255,0.28)]'
+        : 'border-[var(--border)] hover:border-[var(--accent-border)]'
     }`}>
       {/* Top row */}
       <div className="flex items-start justify-between gap-3">
@@ -42,7 +42,7 @@ export default function CollegeCard({ college, onEdit, onDelete, userCET }) {
               </span>
             )}
           </div>
-          <h3 className="font-semibold text-[#E8F4FF] text-base leading-snug group-hover:text-[#00D2FF] transition-colors line-clamp-2">
+          <h3 className="font-semibold text-[var(--text-h)] text-base leading-snug group-hover:text-[var(--accent)] transition-colors line-clamp-2">
             {college.name}
           </h3>
         </div>
@@ -74,9 +74,9 @@ export default function CollegeCard({ college, onEdit, onDelete, userCET }) {
       </div>
 
       {/* Info row */}
-      <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-[#7A9BB5]">
+      <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-[var(--text)]">
         <span className="flex items-center gap-1.5">
-          <MapPin size={14} className="text-[#00D2FF]" />
+          <MapPin size={14} className="text-[var(--accent)]" />
           {college.location}
         </span>
         <span className="flex items-center gap-1.5">
@@ -84,7 +84,7 @@ export default function CollegeCard({ college, onEdit, onDelete, userCET }) {
           {formatFees(college.fees)} / yr
         </span>
         <span className="flex items-center gap-1.5">
-          <GraduationCap size={14} className="text-[#00FF9D]" />
+          <GraduationCap size={14} className="text-[#10b981]" />
           Est. {college.estYear}
         </span>
       </div>
@@ -138,7 +138,7 @@ export default function CollegeCard({ college, onEdit, onDelete, userCET }) {
       {/* View detail link */}
       <Link
         to={`/colleges/${college.id}`}
-        className="flex items-center justify-between pt-3 border-t border-[#2A3F55] text-sm text-[#7A9BB5] hover:text-[#00D2FF] transition-colors group/link"
+        className="flex items-center justify-between pt-3 border-t border-[var(--border)] text-sm text-[var(--text)] hover:text-[var(--accent)] transition-colors group/link"
       >
         <span>View full details</span>
         <ChevronRight size={15} className="group-hover/link:translate-x-0.5 transition-transform" />
