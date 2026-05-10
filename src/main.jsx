@@ -12,11 +12,11 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider>
       <AuthProvider>
-        <CollegeProvider>
-          <ToastProvider>
+        <ToastProvider>
+          <CollegeProvider>
             <RouterProvider router={router} />
-          </ToastProvider>
-        </CollegeProvider>
+          </CollegeProvider>
+        </ToastProvider>
       </AuthProvider>
     </ThemeProvider>
   </StrictMode>,
