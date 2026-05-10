@@ -1,33 +1,26 @@
-import { createContext, useState, useCallback } from 'react'
+import { createContext, useState, useCallback, useContext } from 'react';
+import { ToastContainer } from '../components/ui/Toast';
 
-export const ToastContext = createContext(null)
+export const ToastContext = createContext(null);
 
 export function ToastProvider({ children }) {
-  const [toasts, setToasts] = useState([])
+  const [toasts, setToasts] = useState([]);
+
+  const removeToast = useCallback((id) => {
+    setToasts(prev => prev.filter(t => t.id !== id));
+  }, []);
 
   const toast = useCallback(({ message, type = 'success', duration = 3000 }) => {
-    const id = Date.now()
-    setToasts(prev => [...prev, { id, message, type }])
-    setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), duration)
-  }, [])
+    const id = Date.now() + Math.random();
+    setToasts(prev => [...prev, { id, message, type, duration }]);
+  }, []);
 
   return (
     <ToastContext.Provider value={{ toast }}>
       {children}
-      {/* Toast renderer */}
-      <div className="fixed bottom-6 right-6 z-[999] flex flex-col gap-2">
-        {toasts.map(t => (
-          <div
-            key={t.id}
-            className={`px-4 py-3 rounded-lg text-sm font-medium shadow-lg flex items-center gap-2
-              ${t.type === 'success' ? 'bg-brand-green text-black'
-              : t.type === 'error'   ? 'bg-red-500 text-white'
-              : 'bg-brand-cyan text-black'}`}
-          >
-            {t.type === 'success' ? '✓' : t.type === 'error' ? '✕' : 'ℹ'} {t.message}
-          </div>
-        ))}
-      </div>
+      <ToastContainer toasts={toasts} removeToast={removeToast} />
     </ToastContext.Provider>
-  )
+  );
 }
+
+export const useToast = () => useContext(ToastContext);
